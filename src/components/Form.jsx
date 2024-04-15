@@ -105,6 +105,14 @@ const Form = (props) => {
 		}
 	}, [props.submission, formio]);
 
+	useEffect(() => {
+		const { readOnly } = props.options;
+		if (readOnly && formio && formio.options?.readOnly !== readOnly) {
+			formio.options.readOnly = readOnly;
+			formio.rebuild();
+		}
+	}, [props.options, formio]);
+
 	return <div ref={(el) => (element = el)} />;
 };
 
